@@ -51,7 +51,7 @@ jobs:
       with:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
-        password: ${{ secrets.CR_TOKEN }}
+        password: ${{ github.token }}
 
     - name: Download Gradle Build Artifact
       uses: actions/download-artifact@v3
