@@ -8,10 +8,7 @@
 name: Java CI with Gradle
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -22,6 +19,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - run: |
+        pwd
+        ll
+    
     - name: Checkout
       uses: actions/checkout@v3
       
