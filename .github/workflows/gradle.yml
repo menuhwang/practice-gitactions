@@ -40,7 +40,7 @@ jobs:
         path: build/libs/*-SNAPSHOT.jar
 
   docker-push:
-    need: gradle-build
+    needs: gradle-build
     runs-on: ubuntu-latest
 
     steps:
