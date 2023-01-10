@@ -19,9 +19,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: |
-        pwd
-        ls
+    - run: pwd
+    - run: ls
     
     - name: Checkout
       uses: actions/checkout@v3
