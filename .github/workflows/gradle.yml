@@ -68,8 +68,8 @@ jobs:
       with:
         name: build-artifact
 
-    - name: Docker Build
-      run: docker build -t ${{ env.PROJECT_NAME }} .
-
-    - name: Docker push
-      run: docker push ${{ env.REGISTRY }}/${{ github.repository }}
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        tags: ${{ github.repository }}
