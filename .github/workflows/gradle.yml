@@ -17,6 +17,9 @@ on:
 permissions:
   contents: read
 
+env:
+  PROJECT_NAME: git-action-test
+
 jobs:
   gradle-build:
 
@@ -37,7 +40,7 @@ jobs:
       with:
         arguments: build
 
-    - name: Upload Build Artifacts
+    - name: Upload Gradle Build Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
         name: build-artifact
@@ -50,9 +53,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: actions/download-artifact@v3
+    - name: Download Gradle Build Artifact
+      uses: actions/download-artifact@v3
       with:
         name: build-artifact
 
-    - name: Display structure of downloaded files
-      run: ls -R
+    - name: Build the Docker image
+      run: docker build -t $PROJECT_NAME .
