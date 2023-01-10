@@ -21,7 +21,6 @@ jobs:
     steps:
     - run: |
         pwd
-        ll
     
     - name: Checkout
       uses: actions/checkout@v3
