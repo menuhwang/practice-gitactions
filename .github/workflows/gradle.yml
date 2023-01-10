@@ -72,4 +72,5 @@ jobs:
       run: docker build -t ${{ env.PROJECT_NAME }} .
 
     - name: Docker push
-      run: docker push ${{ env.REGISTRY }}/${{ env.GITHUB_REPOSITORY }}
+#      run: docker push ${{ env.REGISTRY }}"/"${{ GITHUB_REPOSITORY }}
+      run: echo ${{ env.REGISTRY }}"/"${{ GITHUB_REPOSITORY }}
