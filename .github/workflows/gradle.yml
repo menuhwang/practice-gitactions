@@ -74,5 +74,4 @@ jobs:
     - name: Docker push
 #      run: docker push ${{ env.REGISTRY }}/${{ GITHUB_REPOSITORY }}
       run: |
-        echo ${{ env.REGISTRY }}
-        echo $GITHUB_REPOSITORY
+        echo ${{ env.REGISTRY }}/${{ GITHUB_REPOSITORY }}
