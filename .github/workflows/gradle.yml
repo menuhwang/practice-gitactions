@@ -19,7 +19,6 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: git-action-test
 
 jobs:
   gradle-build:
@@ -54,6 +53,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Get the PROJECT_NAME
+      run: echo "PROJECT_NAME=$(echo $GITHUB_REPOSITORY|cut -d '/' -f 2)" >> $GITHUB_ENV
+
     - name: Docker Login
       uses: docker/login-action@v1.12.0
       with:
@@ -66,5 +68,8 @@ jobs:
       with:
         name: build-artifact
 
-    - name: Docker version
-      run: docker -v
+    - name: Docker Build
+      run: docker build -t ${{ env.PROJECT_NAME }} .
+
+    - name: Docker push
+      run: docker push ${{ env.REGISTRY }}/${{ GITHUB_REPOSITORY }}
