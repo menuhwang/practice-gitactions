@@ -42,6 +42,15 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         min-coverage-overall: 90
         min-coverage-changed-files: 90
+        title: Code Coverage
+        update-comment: true
+
+    - name: Fail PR if overall coverage is less than 90%
+      if: ${{ steps.jacoco.outputs.coverage-overall < 90.0 }}
+      uses: actions/github-script@v6
+      with:
+        script: |
+          core.setFailed('Overall coverage is less than 90%!')
 
     - name: Upload Gradle Build Artifact
       uses: actions/upload-artifact@v3.1.2
